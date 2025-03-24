@@ -6,7 +6,7 @@ const postSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
-		price: {
+		author: {
 			type: Number,
 			required: true,
 		},
@@ -14,6 +14,10 @@ const postSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
+		description: {
+			type: String,
+			required: true,
+		}
 	},
 	{
 		timestamps: true, // createdAt, updatedAt

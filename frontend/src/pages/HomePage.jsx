@@ -13,17 +13,44 @@ const HomePage = () => {
 	console.log("products", products);
 
 	return (
-		<Container maxW='container.xl' py={12}>
+		<div className="flex flex-wrap gap-5 mt-10 mb-10 justify-center">
+  
+      {products.map((post) => (            
+            
+        <div className="card bg-base-100 w-1/5 h-[32rem] shadow-xl duration-500 hover:scale-105 hover:bg-[#8c7768] overflow-hidden" key={post._id}>
+            
+          <Link to={`/posts/${post._id}`} className=''>
+            <img
+              src={post.image} 
+              alt={post.title} 
+              className=" w-full h-4/5 object-cover"
+            />
+              
+            <div className="card-body h-full">
+
+              <h2 className="card-title">{post.title}</h2>
+
+              <div className='justify-items-end justify-end'>
+                <h4>{post.author}</h4>
+                <h3>{post.stars}</h3>
+              </div>
+
+
+
+            </div>
+          </Link>
+        </div>
+            
+      ))}
+      
+    </div>
+	);
+};
+
+/*
+<Container maxW='container.xl' py={12}>
 			<VStack spacing={8}>
-				<Text
-					fontSize={"30"}
-					fontWeight={"bold"}
-					bgGradient={"linear(to-r, cyan.400, blue.500)"}
-					bgClip={"text"}
-					textAlign={"center"}
-				>
-					Current Products 🚀
-				</Text>
+				
 
 				<SimpleGrid
 					columns={{
@@ -51,6 +78,5 @@ const HomePage = () => {
 				)}
 			</VStack>
 		</Container>
-	);
-};
+		*/
 export default HomePage;
