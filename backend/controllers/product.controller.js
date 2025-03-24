@@ -1,63 +1,63 @@
 import mongoose from "mongoose";
-import Product from "../models/product.model.js";
+import Post from "../models/postModel.js";
 
-export const getProducts = async (req, res) => {
+export const getPosts = async (req, res) => {
 	try {
-		const products = await Product.find({});
-		res.status(200).json({ success: true, data: products });
+		const posts = await Post.find({});
+		res.status(200).json({ success: true, data: posts });
 	} catch (error) {
-		console.log("error in fetching products:", error.message);
+		console.log("error in fetching posts:", error.message);
 		res.status(500).json({ success: false, message: "Server Error" });
 	}
 };
 
-export const createProduct = async (req, res) => {
-	const product = req.body; // user will send this data
+export const createPost = async (req, res) => {
+	const post = req.body; // user will send this data
 
-	if (!product.name || !product.price || !product.image) {
+	if (!post.name || !post.price || !post.image) {
 		return res.status(400).json({ success: false, message: "Please provide all fields" });
 	}
 
-	const newProduct = new Product(product);
+	const newPost = new Post(post);
 
 	try {
-		await newProduct.save();
-		res.status(201).json({ success: true, data: newProduct });
+		await newPost.save();
+		res.status(201).json({ success: true, data: newPost });
 	} catch (error) {
-		console.error("Error in Create product:", error.message);
+		console.error("Error in Create post:", error.message);
 		res.status(500).json({ success: false, message: "Server Error" });
 	}
 };
 
-export const updateProduct = async (req, res) => {
+export const updatePost = async (req, res) => {
 	const { id } = req.params;
 
-	const product = req.body;
+	const post = req.body;
 
 	if (!mongoose.Types.ObjectId.isValid(id)) {
-		return res.status(404).json({ success: false, message: "Invalid Product Id" });
+		return res.status(404).json({ success: false, message: "Invalid post Id" });
 	}
 
 	try {
-		const updatedProduct = await Product.findByIdAndUpdate(id, product, { new: true });
-		res.status(200).json({ success: true, data: updatedProduct });
+		const updatedPost = await Post.findByIdAndUpdate(id, post, { new: true });
+		res.status(200).json({ success: true, data: updatedPost });
 	} catch (error) {
 		res.status(500).json({ success: false, message: "Server Error" });
 	}
 };
 
-export const deleteProduct = async (req, res) => {
+export const deletePost = async (req, res) => {
 	const { id } = req.params;
 
 	if (!mongoose.Types.ObjectId.isValid(id)) {
-		return res.status(404).json({ success: false, message: "Invalid Product Id" });
+		return res.status(404).json({ success: false, message: "Invalid post Id" });
 	}
 
 	try {
-		await Product.findByIdAndDelete(id);
-		res.status(200).json({ success: true, message: "Product deleted" });
+		await Post.findByIdAndDelete(id);
+		res.status(200).json({ success: true, message: "post deleted" });
 	} catch (error) {
-		console.log("error in deleting product:", error.message);
+		console.log("error in deleting post:", error.message);
 		res.status(500).json({ success: false, message: "Server Error" });
 	}
 };
