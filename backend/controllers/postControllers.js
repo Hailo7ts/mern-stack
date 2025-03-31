@@ -46,6 +46,38 @@ export const updatePost = async (req, res) => {
 	}
 };
 
+/*export const getEditPage = async (req, res) => {
+	try{
+        const post = await Post.findById(req.params.id)
+        res.send(post)
+    }catch(err){
+        console.log(err)
+    }
+}*/
+
+export const getPost = async (req, res) => {
+	try{
+        const post = await Post.findById(req.params.id)
+        res.send(post)
+    }catch(err){
+        console.log(err)
+    }
+}
+
+export const editPost = async(req, res) => {
+    console.log(req.params.id)
+    console.log(req.body)
+    try {
+      await Post.findByIdAndUpdate(req.params.id, req.body);
+      //res.redirect('/');
+    } catch(err) {
+      console.log(err);
+    }
+
+}
+
+
+
 export const deletePost = async (req, res) => {
 	const { id } = req.params;
 

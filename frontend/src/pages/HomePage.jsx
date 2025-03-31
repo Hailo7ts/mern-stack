@@ -1,4 +1,3 @@
-import { Container, SimpleGrid, Text, VStack } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useProductStore } from "../store/product";
@@ -19,7 +18,7 @@ const HomePage = () => {
             
         <div className="card bg-base-100 w-1/5 h-[32rem] shadow-xl duration-500 hover:scale-105 hover:bg-[#8c7768] overflow-hidden" key={post._id}>
             
-          <Link to={`/posts/${post._id}`} className=''>
+          <Link to={`/${post._id}`} className=''>
             <img
               src={post.image} 
               alt={post.title} 
