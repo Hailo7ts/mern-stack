@@ -2,9 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useProductStore } from "../store/product";
 
-const PostPage = ({ product }) => {
-  
-  
+const PostPage = () => {
   const { fetchProducts, products } = useProductStore();
   let { id } = useParams();
 
@@ -62,7 +60,7 @@ const PostPage = ({ product }) => {
           <span>{post.author}</span>
           <span>{post.stars}</span>
           <div className="card-actions justify-end">
-            <Link to={`/posts/edit/${post._id}`} className="btn btn-primary"> Edit </Link>
+            <Link to={`/edit/${post._id}`} className="btn btn-primary"> Edit </Link>
             <Link to={`/`} onClick={() => handleDelete(post._id)} className="btn btn-primary">Delete</Link>
           </div>
         </div>
