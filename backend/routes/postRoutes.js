@@ -8,7 +8,7 @@ router.get("/", getPosts);
 router.post("/", createPost);
 //router.put("/edit/:id", updatePost);
 router.get("/:id", getPost)
-router.get("/edit/:id", getEditPage)
+//router.get("/edit/:id", getEditPage)
 router.post("/edit/:id", editPost)
 router.delete("/:id", deletePost);
 
